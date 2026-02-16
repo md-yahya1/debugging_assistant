@@ -8,6 +8,7 @@ gradio==4.16.0
 # General utilities
 python-dotenv==1.0.1
 pydantic==2.9.0
+huggingface_hub
 
 # Async/HTTP
 httpx==0.27.2

@@ -6,10 +6,14 @@ import yaml
 from pydantic import BaseModel, Field
 
 class ModelConfig(BaseModel):
-    name: str = Field(default="gemini-2.0-flash")
+    provider: str = Field(
+        default="huggingface",
+        description="LLM provider: gemini | huggingface"
+    )
+    name: str = Field(default="meta-llama/Llama-2-7b-chat-hf")
     temperature: float = Field(default=0.4, ge=0.0, le=1.0)
     top_p: float = Field(default=0.9, ge=0.0, le=1.0)
-    max_output_token: int = Field(default=2048, ge=1)
+    max_output_tokens: int = Field(default=2048, ge=1)
 
 class DebuggingAppConfig(BaseModel):
     explanation_language: str = "en"
