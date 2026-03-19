@@ -8,13 +8,14 @@
 [![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-Powered-FFD21F?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](#-docker-deployment)
+[![Render](https://img.shields.io/badge/Render-Deployed-46E3B7?style=for-the-badge&logo=render&logoColor=black)](#-render-deployment)
 [![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)](LICENSE)
 [![Issues](https://img.shields.io/github/issues/md-yahya1/debugging_assistant?style=for-the-badge&color=ef4444&labelColor=0d1117)](https://github.com/md-yahya1/debugging_assistant/issues)
 [![Stars](https://img.shields.io/github/stars/md-yahya1/debugging_assistant?style=for-the-badge&color=f59e0b&labelColor=0d1117)](https://github.com/md-yahya1/debugging_assistant/stargazers)
 
 <br/>
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=18&duration=2800&pause=900&color=818CF8&center=true&vCenter=true&width=580&lines=Paste+error+%E2%86%92+Get+AI+explanation+%E2%9C%85;Supports+any+language+or+framework+%F0%9F%9B%A0%EF%B8%8F;Runs+locally+or+in+Docker+%F0%9F%90%B3;Powered+by+Hugging+Face+LLMs+%F0%9F%A4%96" />
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=18&duration=2800&pause=900&color=818CF8&center=true&vCenter=true&width=580&lines=Paste+error+%E2%86%92+Get+AI+explanation+%E2%9C%85;Supports+any+language+or+framework+%F0%9F%9B%A0%EF%B8%8F;Deployed+on+Render+%F0%9F%9A%80;Powered+by+Hugging+Face+LLMs+%F0%9F%A4%96" />
 
 </div>
 
@@ -34,6 +35,7 @@
 - 💬 **Clean Web UI** — Streamlit-based interface; no frontend setup, zero friction
 - ⚙️ **YAML Config** — Swap models, tune temperature, set token limits — all from `config.yaml`
 - 🐳 **Docker-First** — One command to build, one command to run
+- 🚀 **Render Deployed** — Live on the internet via Render's free tier
 - 🔒 **Secure by Design** — API keys via `.env`, never hardcoded, `.gitignore`d by default
 - ⚡ **Fast Inference** — Optimized prompt pipeline for snappy response times
 
@@ -66,6 +68,7 @@
 **DevOps**
 
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=black)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
 </div>
@@ -95,12 +98,13 @@ debugging_assistant/
 ├── .env.example                # 🔑 Environment variable template
 ├── requirements.txt            # 📦 Python dependencies
 ├── Dockerfile                  # 🐳 Container configuration
+├── render.yaml                 # 🚀 Render deployment blueprint
 └── README.md
 ```
 
 ---
 
-## ⚡ Quick Start
+## ⚡ Quick Start (Local)
 
 **Get running in under 2 minutes:**
 
@@ -129,7 +133,7 @@ Open **http://localhost:8501** in your browser. Done.
 
 ---
 
-## 🐳 Docker Deployment
+## 🐳 Docker Deployment (Local)
 
 ```bash
 # Build the image
@@ -143,9 +147,45 @@ docker run -p 8501:8501 --env-file .env debugging-assistant
 
 ---
 
+## 🚀 Render Deployment
+
+This project ships with a `render.yaml` blueprint for one-click deployment on [Render](https://render.com).
+
+### Steps
+
+1. **Push your repo to GitHub** (make sure `render.yaml` and `Dockerfile` are at the root)
+
+2. **Go to [render.com](https://render.com)** → New → Blueprint
+
+3. **Connect your GitHub repo** — Render will auto-detect `render.yaml`
+
+4. **Set the environment variable** in the Render dashboard:
+
+   | Key | Value |
+   |---|---|
+   | `HF_API_KEY` | Your Hugging Face API token |
+
+5. **Deploy** — Render builds the Docker image and gives you a live URL like:
+   ```
+   https://ai-debug-assistant.onrender.com
+   ```
+
+> ⚠️ **Free tier note:** Render's free instances spin down after 15 minutes of inactivity. The first request after sleep may take ~30 seconds to wake up.
+
+### Manual Deploy (without Blueprint)
+
+If you prefer to configure manually on Render:
+
+- **Environment:** Docker
+- **Dockerfile path:** `./Dockerfile`
+- **Instance type:** Free (or Starter for always-on)
+- **Environment variable:** `HF_API_KEY` = your token
+
+---
+
 ## 🔑 Environment Variables
 
-Create a `.env` file from the template:
+Create a `.env` file locally from the template:
 
 ```bash
 cp .env.example .env
@@ -160,7 +200,7 @@ HF_API_KEY=your_huggingface_api_token_here
 |---|---|---|
 | `HF_API_KEY` | Hugging Face API token — get yours [here](https://huggingface.co/settings/tokens) | ✅ Yes |
 
-> ⚠️ **Never commit your `.env` file.** It's already in `.gitignore`.
+> ⚠️ **Never commit your `.env` file.** It's already in `.gitignore`. On Render, set this in the dashboard under **Environment**.
 
 ---
 
@@ -172,14 +212,14 @@ All model behavior is controlled from `config/config.yaml`:
 # config/config.yaml — customize to your needs
 model:
   provider: huggingface
-  name: "mistralai/Mistral-7B-Instruct-v0.1"   # swap any HF model here
-  temperature: 0.3
+  name: "Qwen/Qwen2.5-1.5B-Instruct"   # swap any HF model here
+  temperature: 0.4
   max_new_tokens: 512
-  top_p: 0.95
+  top_p: 0.9
 
-app:
-  max_code_chars: 3000    # input size limit
-  language: "english"     # explanation language
+debugging_app:
+  max_code_chars: 4000
+  explanation_language: "en"
 ```
 
 ---
@@ -199,13 +239,23 @@ streamlit run apps/debugging_assistant/app.py
 <details>
 <summary><b>❌ HFValidationError: Could not connect to Hugging Face</b></summary>
 
-- Double-check your `HF_API_KEY` in `.env`
+- Double-check your `HF_API_KEY` in `.env` (local) or Render dashboard (deployed)
 - Ensure the key has **Inference** permissions enabled on Hugging Face
 - Test your key: `curl https://huggingface.co/api/whoami -H "Authorization: Bearer YOUR_KEY"`
 </details>
 
 <details>
-<summary><b>❌ Port 8501 already in use</b></summary>
+<summary><b>❌ Render deploy fails — port binding error</b></summary>
+
+Render injects a `$PORT` environment variable at runtime. The `Dockerfile` already handles this:
+```dockerfile
+CMD streamlit run apps/debugging_assistant/app.py --server.port=$PORT ...
+```
+Make sure you're using the updated `Dockerfile` from this repo.
+</details>
+
+<details>
+<summary><b>❌ Port 8501 already in use (local)</b></summary>
 
 ```bash
 streamlit run apps/debugging_assistant/app.py --server.port=8502
@@ -220,6 +270,7 @@ streamlit run apps/debugging_assistant/app.py --server.port=8502
 - [x] YAML-based model configuration
 - [x] Docker support
 - [x] Environment variable security
+- [x] Render deployment
 - [ ] Multi-language support (Python, JS, Java, C++)
 - [ ] Chat history & session memory
 - [ ] Model selector dropdown in UI
