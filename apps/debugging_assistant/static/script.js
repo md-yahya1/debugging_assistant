@@ -8,7 +8,6 @@ const charCount = document.querySelector('.char-count');
 const themeToggle = document.getElementById('themeToggle');
 const sunIcon = document.querySelector('.sun-icon');
 const moonIcon = document.querySelector('.moon-icon');
-const languageSelect = document.getElementById('languageSelect');
 
 // Event Listeners
 debugForm.addEventListener('submit', handleDebug);
@@ -59,7 +58,8 @@ async function handleDebug(e) {
     e.preventDefault();
 
     const code = codeInput.value.trim();
-    const language = languageSelect.value;
+    const languageSelect = document.getElementById('languageSelect');
+    const language = languageSelect ? languageSelect.value : "auto";
 
     if (!code) {
         showError('Please enter your code or error log');

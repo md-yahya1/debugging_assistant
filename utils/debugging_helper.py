@@ -17,10 +17,15 @@ def build_debugging_prompt(user_input: str, language: str = "auto") -> str:
     system_instruction = prompt_json["system_instruction"]
     template = prompt_json["user_prompt_template"]
 
-    context = f"Language Context: {language}\n\n" if language.lower() != "auto" else ""
+    language_context = (
+        f"Language Context: {language}\n\n" if language and language != "auto"
+        else "Language Context: auto-detect\n\n"
+    )
+
     full_prompt = (
         system_instruction + "\n\n" +
-        template.replace("{{USER_INPUT}}", context + user_input.strip())
+        language_context +
+        template.replace("{{USER_INPUT}}", user_input.strip())
     )
 
     return full_prompt
