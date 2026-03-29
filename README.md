@@ -5,17 +5,17 @@
 <br/>
 
 [![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io)
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-Powered-FFD21F?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](#-docker-deployment)
-[![Render](https://img.shields.io/badge/Render-Deployed-46E3B7?style=for-the-badge&logo=render&logoColor=black)](#-render-deployment)
+[![Railway](https://img.shields.io/badge/Railway-Deploy-0B0D0E?style=for-the-badge&logo=railway&logoColor=white)](#-railway-deployment)
 [![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)](LICENSE)
 [![Issues](https://img.shields.io/github/issues/md-yahya1/debugging_assistant?style=for-the-badge&color=ef4444&labelColor=0d1117)](https://github.com/md-yahya1/debugging_assistant/issues)
 [![Stars](https://img.shields.io/github/stars/md-yahya1/debugging_assistant?style=for-the-badge&color=f59e0b&labelColor=0d1117)](https://github.com/md-yahya1/debugging_assistant/stargazers)
 
 <br/>
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=18&duration=2800&pause=900&color=818CF8&center=true&vCenter=true&width=580&lines=Paste+error+%E2%86%92+Get+AI+explanation+%E2%9C%85;Supports+any+language+or+framework+%F0%9F%9B%A0%EF%B8%8F;Deployed+on+Render+%F0%9F%9A%80;Powered+by+Hugging+Face+LLMs+%F0%9F%A4%96" />
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=18&duration=2800&pause=900&color=818CF8&center=true&vCenter=true&width=580&lines=Paste+error+%E2%86%92+Get+AI+explanation+%E2%9C%85;Generate+code+from+natural+language+%F0%9F%92%BB;Supports+any+language+or+framework+%F0%9F%9B%A0%EF%B8%8F;Powered+by+Qwen+2.5+Coder+%F0%9F%A4%96" />
 
 </div>
 
@@ -23,7 +23,7 @@
 
 ## 🧠 What Is This?
 
-**AI Debug Assistant** is a lightweight, LLM-powered debugging tool built with Streamlit and Hugging Face. Drop in your error log or broken code snippet — and get an instant, intelligent breakdown of what went wrong and how to fix it.
+**AI Debug Assistant** is a lightweight, LLM-powered debugging and code generation tool built with **FastAPI** and **Hugging Face**. Drop in your error log or broken code snippet — and get an instant, intelligent breakdown of what went wrong and how to fix it. Need new code? Describe what you want and get production-ready code generated instantly.
 
 > Built for developers who are tired of Googling the same stack traces over and over.
 
@@ -31,13 +31,17 @@
 
 ## ✨ Key Features
 
-- 🤖 **LLM-Powered Analysis** — Leverages Hugging Face inference models to understand errors contextually, not just pattern-match
-- 💬 **Clean Web UI** — Streamlit-based interface; no frontend setup, zero friction
-- ⚙️ **YAML Config** — Swap models, tune temperature, set token limits — all from `config.yaml`
-- 🐳 **Docker-First** — One command to build, one command to run
-- 🚀 **Render Deployed** — Live on the internet via Render's free tier
-- 🔒 **Secure by Design** — API keys via `.env`, never hardcoded, `.gitignore`d by default
-- ⚡ **Fast Inference** — Optimized prompt pipeline for snappy response times
+| Feature | Description |
+|---|---|
+| 🤖 **LLM-Powered Debugging** | Leverages Hugging Face's `Qwen/Qwen2.5-Coder-32B-Instruct` model to understand errors contextually |
+| 💻 **Code Generation** | Describe what you need in plain English — get clean, working code in any language |
+| 🌐 **Modern Web UI** | FastAPI backend with a sleek, responsive HTML/CSS/JS frontend |
+| ⚙️ **YAML Config** | Swap models, tune temperature, set token limits — all from `config.yaml` |
+| 🐳 **Docker-First** | One command to build, one command to run |
+| 🚂 **Railway Deployed** | Ready for one-click deployment on Railway |
+| 🔒 **Secure by Design** | API keys via `.env`, never hardcoded, `.gitignore`d by default |
+| ⚡ **Fast Inference** | Optimized prompt pipeline for snappy response times |
+| 🩺 **Health Check** | Built-in `/health` endpoint for monitoring and uptime checks |
 
 ---
 
@@ -58,17 +62,24 @@
 **Core**
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
 ![YAML](https://img.shields.io/badge/YAML-Config-CB171E?style=for-the-badge&logo=yaml&logoColor=white)
 
 **AI / ML**
 
 ![Hugging Face](https://img.shields.io/badge/HuggingFace-FFD21F?style=for-the-badge&logo=huggingface&logoColor=black)
+![Qwen](https://img.shields.io/badge/Qwen_2.5_Coder-7C3AED?style=for-the-badge&logoColor=white)
+
+**Frontend**
+
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
 **DevOps**
 
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=black)
+![Railway](https://img.shields.io/badge/Railway-0B0D0E?style=for-the-badge&logo=railway&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
 </div>
@@ -82,24 +93,58 @@ debugging_assistant/
 │
 ├── apps/
 │   └── debugging_assistant/
-│       ├── app.py              # 🚀 Main Streamlit entry point
-│       └── prompts.py          # 💬 Prompt definitions
+│       ├── app.py              # 🚀 FastAPI application (routes & endpoints)
+│       ├── prompts.py          # 💬 Prompt definitions
+│       └── static/             # 🎨 Frontend assets
+│           ├── index.html      #    Main HTML page
+│           ├── styles.css      #    Stylesheet
+│           └── script.js       #    Client-side logic
 │
 ├── config/
 │   ├── config.yaml             # ⚙️  Model + app settings (edit here)
-│   └── model_config.py         # 🐍 Python config loader
+│   └── model_config.py         # 🐍 Python config loader (Pydantic)
 │
 ├── utils/
-│   ├── debugging_helper.py     # 🔍 Core debugging logic
-│   ├── llm_client.py           # 🤖 HuggingFace API client
+│   ├── llm_client.py           # 🤖 HuggingFace InferenceClient wrapper
+│   ├── debugging_helper.py     # 🔍 Debug prompt builder
+│   ├── code_generator_helper.py# 💻 Code generation prompt builder
 │   ├── text_helpers.py         # 🔤 Text preprocessing utilities
-│   └── prompts/                # 📝 Modular prompt templates
+│   └── prompts/                # 📝 Modular prompt templates (JSON)
 │
 ├── .env.example                # 🔑 Environment variable template
 ├── requirements.txt            # 📦 Python dependencies
 ├── Dockerfile                  # 🐳 Container configuration
-├── render.yaml                 # 🚀 Render deployment blueprint
+├── railway.json                # 🚂 Railway deployment config
+├── main.py                     # 🏁 Main entry point (starts uvicorn)
+├── streamlit_app.py            # 📱 Streamlit Cloud entry (alternative)
 └── README.md
+```
+
+---
+
+## 🌐 API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/` | Serves the web UI |
+| `GET` | `/health` | Health check — returns `{"status": "ok"}` |
+| `POST` | `/api/debug` | Debug code/error logs |
+| `POST` | `/api/generate-code` | Generate code from natural language |
+
+### Request Examples
+
+**Debug Code:**
+```bash
+curl -X POST http://localhost:8000/api/debug \
+  -H "Content-Type: application/json" \
+  -d '{"code": "print(Hello World)"}'
+```
+
+**Generate Code:**
+```bash
+curl -X POST http://localhost:8000/api/generate-code \
+  -H "Content-Type: application/json" \
+  -d '{"request": "Create a function to reverse a linked list", "language": "python"}'
 ```
 
 ---
@@ -126,60 +171,48 @@ cp .env.example .env
 # → Open .env and paste your Hugging Face API key
 
 # 5. Launch 🚀
-streamlit run apps/debugging_assistant/app.py
+python main.py
 ```
 
-Open **http://localhost:8501** in your browser. Done.
+Open **http://localhost:8000** in your browser. Done.
 
 ---
 
-## 🐳 Docker Deployment (Local)
+## 🐳 Docker Deployment
 
 ```bash
 # Build the image
 docker build -t debugging-assistant .
 
 # Run the container
-docker run -p 8501:8501 --env-file .env debugging-assistant
+docker run -p 8000:8000 --env-file .env debugging-assistant
 ```
 
-> App available at **http://localhost:8501**
+> App available at **http://localhost:8000**
 
 ---
 
-## 🚀 Render Deployment
+## 🚂 Railway Deployment
 
-This project ships with a `render.yaml` blueprint for one-click deployment on [Render](https://render.com).
+This project ships with a `railway.json` config for deployment on [Railway](https://railway.app).
 
 ### Steps
 
-1. **Push your repo to GitHub** (make sure `render.yaml` and `Dockerfile` are at the root)
+1. **Push your repo to GitHub** (make sure `railway.json` and `Dockerfile` are at the root)
 
-2. **Go to [render.com](https://render.com)** → New → Blueprint
+2. **Go to [railway.app](https://railway.app)** → New Project → Deploy from GitHub repo
 
-3. **Connect your GitHub repo** — Render will auto-detect `render.yaml`
+3. **Connect your GitHub repo** — Railway will auto-detect `railway.json`
 
-4. **Set the environment variable** in the Render dashboard:
+4. **Set the environment variable** in the Railway dashboard:
 
    | Key | Value |
    |---|---|
    | `HF_API_KEY` | Your Hugging Face API token |
 
-5. **Deploy** — Render builds the Docker image and gives you a live URL like:
-   ```
-   https://ai-debug-assistant.onrender.com
-   ```
+5. **Deploy** — Railway builds the Docker image and gives you a live URL
 
-> ⚠️ **Free tier note:** Render's free instances spin down after 15 minutes of inactivity. The first request after sleep may take ~30 seconds to wake up.
-
-### Manual Deploy (without Blueprint)
-
-If you prefer to configure manually on Render:
-
-- **Environment:** Docker
-- **Dockerfile path:** `./Dockerfile`
-- **Instance type:** Free (or Starter for always-on)
-- **Environment variable:** `HF_API_KEY` = your token
+> ⚠️ **Note:** Make sure your `HF_API_KEY` environment variable is set in Railway's dashboard under **Variables**. The app will fail to start without it.
 
 ---
 
@@ -192,7 +225,7 @@ cp .env.example .env
 ```
 
 ```env
-# .env.example
+# .env
 HF_API_KEY=your_huggingface_api_token_here
 ```
 
@@ -200,7 +233,7 @@ HF_API_KEY=your_huggingface_api_token_here
 |---|---|---|
 | `HF_API_KEY` | Hugging Face API token — get yours [here](https://huggingface.co/settings/tokens) | ✅ Yes |
 
-> ⚠️ **Never commit your `.env` file.** It's already in `.gitignore`. On Render, set this in the dashboard under **Environment**.
+> ⚠️ **Never commit your `.env` file.** It's already in `.gitignore`. On Railway, set this in the dashboard under **Variables**.
 
 ---
 
@@ -212,19 +245,51 @@ All model behavior is controlled from `config/config.yaml`:
 # config/config.yaml — customize to your needs
 model:
   provider: huggingface
-  name: "Qwen/Qwen2.5-1.5B-Instruct"   # swap any HF model here
+  name: "Qwen/Qwen2.5-Coder-32B-Instruct"   # swap any HF-supported model here
   temperature: 0.4
-  max_new_tokens: 512
   top_p: 0.9
+  max_output_tokens: 512
 
 debugging_app:
-  max_code_chars: 4000
   explanation_language: "en"
+  max_code_chars: 4000
 ```
+
+### Supported Models (Tested & Working)
+
+| Model | Best For |
+|---|---|
+| `Qwen/Qwen2.5-Coder-32B-Instruct` | 🏆 Code debugging & generation (recommended) |
+| `HuggingFaceH4/zephyr-7b-beta` | General-purpose chat |
+| `meta-llama/Llama-3.1-8B-Instruct` | General-purpose reasoning |
+
+> 💡 Not all Hugging Face models are available on the free serverless Inference API. If you get a `model_not_supported` error, switch to one of the models listed above.
 
 ---
 
 ## 🔧 Troubleshooting
+
+<details>
+<summary><b>❌ model_not_supported — "The requested model is not supported by any provider"</b></summary>
+
+The model you specified in `config/config.yaml` is not available on HF's free serverless Inference API. Switch to a supported model:
+```yaml
+model:
+  name: "Qwen/Qwen2.5-Coder-32B-Instruct"
+```
+See the [Supported Models](#supported-models-tested--working) table above.
+</details>
+
+<details>
+<summary><b>❌ YAML parse error — "expected block end, but found block mapping start"</b></summary>
+
+Your `config/config.yaml` has invalid YAML syntax. Common causes:
+- Duplicate keys (e.g., two `model:` blocks)
+- Incorrect indentation (must use spaces, not tabs)
+- Missing newline between sections
+
+Refer to the [Configuration](#️-configuration) section for the correct format.
+</details>
 
 <details>
 <summary><b>❌ FileNotFoundError: Debugging prompt file not found</b></summary>
@@ -232,33 +297,27 @@ debugging_app:
 Make sure you're running the app from the **project root**, not a subdirectory:
 ```bash
 cd debugging_assistant   # ← must be here
-streamlit run apps/debugging_assistant/app.py
+python main.py
 ```
 </details>
 
 <details>
-<summary><b>❌ HFValidationError: Could not connect to Hugging Face</b></summary>
+<summary><b>❌ HF_API_KEY not found / Authentication error</b></summary>
 
-- Double-check your `HF_API_KEY` in `.env` (local) or Render dashboard (deployed)
-- Ensure the key has **Inference** permissions enabled on Hugging Face
-- Test your key: `curl https://huggingface.co/api/whoami -H "Authorization: Bearer YOUR_KEY"`
-</details>
-
-<details>
-<summary><b>❌ Render deploy fails — port binding error</b></summary>
-
-Render injects a `$PORT` environment variable at runtime. The `Dockerfile` already handles this:
-```dockerfile
-CMD streamlit run apps/debugging_assistant/app.py --server.port=$PORT ...
-```
-Make sure you're using the updated `Dockerfile` from this repo.
-</details>
-
-<details>
-<summary><b>❌ Port 8501 already in use (local)</b></summary>
-
+- Double-check your `HF_API_KEY` in `.env` (local) or Railway dashboard (deployed)
+- Ensure the key has **Inference** permissions enabled on [Hugging Face](https://huggingface.co/settings/tokens)
+- Test your key:
 ```bash
-streamlit run apps/debugging_assistant/app.py --server.port=8502
+curl https://huggingface.co/api/whoami -H "Authorization: Bearer YOUR_KEY"
+```
+</details>
+
+<details>
+<summary><b>❌ Port 8000 already in use</b></summary>
+
+Another process is using port 8000. Either stop it or change the port in `main.py`:
+```python
+uvicorn.run(app, host="0.0.0.0", port=8001)  # use a different port
 ```
 </details>
 
@@ -267,15 +326,19 @@ streamlit run apps/debugging_assistant/app.py --server.port=8502
 ## 🗺️ Roadmap
 
 - [x] Core LLM debugging pipeline
+- [x] Code generation endpoint
 - [x] YAML-based model configuration
+- [x] FastAPI + static frontend
 - [x] Docker support
 - [x] Environment variable security
-- [x] Render deployment
+- [x] Railway deployment config
+- [x] Health check endpoint
 - [ ] Multi-language support (Python, JS, Java, C++)
 - [ ] Chat history & session memory
 - [ ] Model selector dropdown in UI
 - [ ] Export debug report as `.md` or `.pdf`
 - [ ] GitHub Copilot-style inline fix suggestions
+- [ ] Rate limiting & usage analytics
 
 ---
 
