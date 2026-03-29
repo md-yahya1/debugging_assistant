@@ -14,13 +14,14 @@ def main():
     """Start the FastAPI server for the debugging assistant"""
     try:
         print("[*] Starting AI Debugging Assistant...")
-        print("[*] Server will be available at: http://localhost:8000")
+        port = int(os.environ.get("PORT", 8000))
+        print(f"[*] Server will be available at: http://localhost:{port}")
 
         # Run the FastAPI app
         from apps.debugging_assistant.app import app
         import uvicorn
 
-        uvicorn.run(app, host="0.0.0.0", port=8000)
+        uvicorn.run(app, host="0.0.0.0", port=port)
     except Exception as e:
         print(f"[!] Error: {e}")
         sys.exit(1)
