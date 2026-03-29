@@ -1,8 +1,11 @@
-# Google Gemini API (stable client compatible with Gradio/Streamlit)
+# Google Gemini API (stable client compatible with Gradio)
 google-generativeai==0.7.2
 
+# Web framework
+fastapi==0.104.1
+uvicorn==0.24.0
+
 # UI frameworks
-streamlit==1.41.0
 gradio==4.16.0
 
 # General utilities

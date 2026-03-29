@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Debugging Assistant</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🤖</span>
+                    <h1>AI Debugging Assistant</h1>
+                </div>
+                <p class="tagline">Get instant AI-powered debugging help for your code</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="layout">
+                <!-- Input Section -->
+                <section class="input-section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>📝 Your Code</h2>
+                            <span class="char-count">0 / 5000</span>
+                        </div>
+                        <form id="debugForm">
+                            <textarea
+                                id="codeInput"
+                                class="code-input"
+                                placeholder="Paste your code or error log here...&#10;&#10;Example:&#10;print('Hello World')&#10;TypeError: unsupported operand type(s) for +: 'int' and 'str'"
+                                maxlength="5000"
+                            ></textarea>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary" id="debugBtn">
+                                    <span class="btn-icon">🔍</span>
+                                    Debug Code
+                                </button>
+                                <button type="reset" class="btn btn-secondary">
+                                    <span class="btn-icon">🔄</span>
+                                    Clear
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Output Section -->
+                <section class="output-section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>💡 AI Analysis</h2>
+                        </div>
+                        <div id="outputContainer" class="output-container">
+                            <div class="empty-state">
+                                <p>👉 Enter your code and click "Debug Code" to start</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 AI Debugging Assistant | Powered by Modern AI</p>
+        </footer>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="spinner hidden">
+        <div class="spinner-content">
+            <div class="spinner-ring"></div>
+            <p>Analyzing your code...</p>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

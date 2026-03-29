@@ -2,40 +2,51 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 
-import streamlit as st
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
 from utils.llm_client import HuggingFaceClient
 from utils.debugging_helper import build_debugging_prompt
-def main():
-    st.set_page_config(
-        page_title="AI Debugging Assistant",
-        page_icon= "👨‍🏫",
-        layout = "centered"
-    )
 
-    st.title("👨‍🏫 AI Debugging Assistant")
-    st.write("Describe your coding issue, and I will help you debug it!")
+app = FastAPI(title="AI Debugging Assistant")
 
-    user_input =st.text_area(
-        label="Enter your code or error log below:",
-        height=200,
-        placeholder="Example:\nprint('Hello World')"
-    )
+# Mount static files
+static_dir = os.path.join(os.path.dirname(__file__), "static")
+if os.path.exists(static_dir):
+    app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
-    if st.button("🔍 Debug code"):
-        if not user_input.strip():
-            st.warning("Please enter your code or error log to proceed.")
-            return
-        with st.spinner("Analyzing your code.."):
-            try:
-                prompt = build_debugging_prompt(user_input)
-                client = HuggingFaceClient()
-                response = client.ask(prompt)
+class DebugRequest(BaseModel):
+    code: str
 
-                st.markdown("---")
-                st.subheader("🧠 debugging result")
-                st.markdown(response)
-            except Exception as e:
-                st.error(f"An error occured: {str(e)}")
+@app.get("/", response_class=HTMLResponse)
+async def get_home():
+    """Serve the main HTML page"""
+    html_file = os.path.join(static_dir, "index.html")
+    if os.path.exists(html_file):
+        with open(html_file, 'r', encoding='utf-8') as f:
+            return f.read()
+    return "<h1>Debugging Assistant</h1>"
 
-if __name__ =="__main__":
-    main()
+@app.post("/api/debug")
+async def debug_code(request: DebugRequest):
+    """Debug the provided code or error log"""
+    if not request.code.strip():
+        raise HTTPException(status_code=400, detail="Please enter your code or error log")
+
+    try:
+        prompt = build_debugging_prompt(request.code)
+        client = HuggingFaceClient()
+        response = client.ask(prompt)
+        return {"success": True, "result": response}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
+
+@app.get("/health")
+async def health_check():
+    """Health check endpoint"""
+    return {"status": "ok"}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
