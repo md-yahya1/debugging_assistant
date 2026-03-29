@@ -8,6 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from utils.llm_client import HuggingFaceClient
 from utils.debugging_helper import build_debugging_prompt
+from utils.code_generator_helper import build_code_generation_prompt
 
 app = FastAPI(title="AI Debugging Assistant")
 
@@ -18,6 +19,10 @@ if os.path.exists(static_dir):
 
 class DebugRequest(BaseModel):
     code: str
+
+class CodeGenerationRequest(BaseModel):
+    request: str
+    language: str = "python"
 
 @app.get("/", response_class=HTMLResponse)
 async def get_home():
@@ -39,6 +44,20 @@ async def debug_code(request: DebugRequest):
         client = HuggingFaceClient()
         response = client.ask(prompt)
         return {"success": True, "result": response}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
+
+@app.post("/api/generate-code")
+async def generate_code(request: CodeGenerationRequest):
+    """Generate code based on user request using Deepseek Coder"""
+    if not request.request.strip():
+        raise HTTPException(status_code=400, detail="Please enter your code generation request")
+
+    try:
+        prompt = build_code_generation_prompt(request.request, request.language)
+        client = HuggingFaceClient()
+        response = client.ask(prompt)
+        return {"success": True, "result": response, "language": request.language}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
 
