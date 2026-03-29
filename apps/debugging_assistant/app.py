@@ -19,6 +19,7 @@ if os.path.exists(static_dir):
 
 class DebugRequest(BaseModel):
     code: str
+    language: str = "auto"
 
 class CodeGenerationRequest(BaseModel):
     request: str
@@ -40,7 +41,7 @@ async def debug_code(request: DebugRequest):
         raise HTTPException(status_code=400, detail="Please enter your code or error log")
 
     try:
-        prompt = build_debugging_prompt(request.code)
+        prompt = build_debugging_prompt(request.code, request.language)
         client = HuggingFaceClient()
         response = client.ask(prompt)
         return {"success": True, "result": response}

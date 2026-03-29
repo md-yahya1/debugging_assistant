@@ -5,10 +5,48 @@ const debugBtn = document.getElementById('debugBtn');
 const outputContainer = document.getElementById('outputContainer');
 const loadingSpinner = document.getElementById('loadingSpinner');
 const charCount = document.querySelector('.char-count');
+const themeToggle = document.getElementById('themeToggle');
+const sunIcon = document.querySelector('.sun-icon');
+const moonIcon = document.querySelector('.moon-icon');
+const languageSelect = document.getElementById('languageSelect');
 
 // Event Listeners
 debugForm.addEventListener('submit', handleDebug);
 codeInput.addEventListener('input', updateCharCount);
+themeToggle.addEventListener('click', toggleTheme);
+
+// Theme initialization
+initTheme();
+
+function initTheme() {
+    // Check local storage or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        updateThemeIcons('dark');
+    }
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcons(newTheme);
+}
+
+function updateThemeIcons(theme) {
+    if (theme === 'dark') {
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+    } else {
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+    }
+}
 
 // Update character count
 function updateCharCount() {
@@ -21,6 +59,7 @@ async function handleDebug(e) {
     e.preventDefault();
 
     const code = codeInput.value.trim();
+    const language = languageSelect.value;
 
     if (!code) {
         showError('Please enter your code or error log');
@@ -38,7 +77,7 @@ async function handleDebug(e) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ code }),
+            body: JSON.stringify({ code, language }),
         });
 
         if (!response.ok) {
