@@ -116,7 +116,6 @@ debugging_assistant/
 ├── Dockerfile                  # 🐳 Container configuration
 ├── railway.json                # 🚂 Railway deployment config
 ├── main.py                     # 🏁 Main entry point (starts uvicorn)
-├── streamlit_app.py            # 📱 Streamlit Cloud entry (alternative)
 └── README.md
 ```
 
