@@ -1,10 +1,10 @@
 model:
   provider: huggingface
-  name: mistralai/Mistral-7B-Instruct-v0.1
+  name: Qwen/Qwen2.5-Coder-32B-Instruct
   temperature: 0.4
   top_p: 0.9
   max_output_tokens: 512
 
 debugging_app:
-  explanation_language: "en"   # reserve for future (if you want Hindi etc)
-  max_code_chars: 4000         # safety limit for very long code
+  explanation_language: "en"
+  max_code_chars: 4000
