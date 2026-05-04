@@ -41,36 +41,46 @@ docker build -t debugging-assistant:latest .
 docker run -p 8000:8000 --env-file .env debugging-assistant:latest
 ```
 
-## Railway Deployment
+## Vercel Deployment
 
 ### Prerequisites
-- [Railway Account](https://railway.app)
-- GitHub repository connected to Railway
+- [Vercel Account](https://vercel.com)
+- [Vercel CLI](https://vercel.com/docs/cli) (optional, for CLI deployments)
+- GitHub repository connected to Vercel
 
 ### Steps
 
 1. **Connect Repository**
-   - Go to [Railway Dashboard](https://railway.app/dashboard)
-   - Click "New Project"
-   - Select "Deploy from GitHub repo"
-   - Connect your GitHub account and select this repository
+   - Go to [Vercel Dashboard](https://vercel.com/dashboard)
+   - Click "Add New" → "Project"
+   - Import your GitHub repository
 
 2. **Configure Environment Variables**
-   - Go to your project settings → Variables
+   - Go to your project settings → Environment Variables
    - Add `HF_API_KEY` with your Hugging Face API token
    - Get your token from: https://huggingface.co/settings/tokens
 
 3. **Deploy**
-   - Railway automatically deploys on push to main branch
-   - Monitor deployment in the Railway dashboard
-   - Your app will be available at a Railway-provided URL
+   - Vercel automatically deploys on push to the main branch
+   - Monitor deployment in the Vercel dashboard
+   - Your app will be available at a Vercel-provided URL (e.g. `your-project.vercel.app`)
 
 4. **Set Custom Domain** (Optional)
-   - In Railway dashboard, go to Settings → Domains
-   - Add your custom domain
+   - In the Vercel dashboard, go to your project → Settings → Domains
+   - Add your custom domain and follow the DNS configuration steps
+
+### CLI Deployment (Alternative)
+```bash
+# Install Vercel CLI
+npm install -g vercel
+
+# Login and deploy
+vercel login
+vercel --prod
+```
 
 ### Environment Variables
-Set these in Railway dashboard or `.env` file:
+Set these in the Vercel dashboard or `.env` file:
 
 ```
 HF_API_KEY=your_huggingface_api_token_here
@@ -112,9 +122,9 @@ HF_API_KEY=your_huggingface_api_token_here
 ## Troubleshooting
 
 ### 500 Error on /api/debug
-- Check if `HF_API_KEY` is configured (in `.env` locally, or Railway Variables when deployed)
+- Check if `HF_API_KEY` is configured (in `.env` locally, or Vercel Environment Variables when deployed)
 - Check if the model `Qwen/Qwen2.5-Coder-32B-Instruct` is still available on HF Inference API
-- View logs in Railway dashboard
+- View logs in the Vercel dashboard under the **Deployments** tab → **Functions** logs
 
 ### YAML Parse Error on Startup
 - Ensure `config/config.yaml` has valid YAML syntax
@@ -122,9 +132,9 @@ HF_API_KEY=your_huggingface_api_token_here
 - Must not have duplicate top-level keys (`model:`, `debugging_app:`)
 
 ### Port Issues
-- Railway uses dynamic port assignment; the app listens on port 8000 by default
-- The Dockerfile exposes port 8000
+- Vercel manages port assignment automatically via the serverless runtime
+- No manual port configuration is needed in `vercel.json`
 
 ### Health Check Failures
 - Ensure the app is running with `/health` endpoint accessible
-- Check Railway logs for startup errors
+- Check Vercel function logs for startup errors

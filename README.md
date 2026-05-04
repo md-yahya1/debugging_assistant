@@ -8,7 +8,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-Powered-FFD21F?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](#-docker-deployment)
-[![Railway](https://img.shields.io/badge/Railway-Deploy-0B0D0E?style=for-the-badge&logo=railway&logoColor=white)](#-railway-deployment)
+[![Vercel](https://img.shields.io/badge/Vercel-Deploy-000000?style=for-the-badge&logo=vercel&logoColor=white)](#-vercel-deployment)
 [![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)](LICENSE)
 [![Issues](https://img.shields.io/github/issues/md-yahya1/debugging_assistant?style=for-the-badge&color=ef4444&labelColor=0d1117)](https://github.com/md-yahya1/debugging_assistant/issues)
 [![Stars](https://img.shields.io/github/stars/md-yahya1/debugging_assistant?style=for-the-badge&color=f59e0b&labelColor=0d1117)](https://github.com/md-yahya1/debugging_assistant/stargazers)
@@ -38,7 +38,7 @@
 | 🌐 **Modern Web UI** | FastAPI backend with a sleek, responsive HTML/CSS/JS frontend |
 | ⚙️ **YAML Config** | Swap models, tune temperature, set token limits — all from `config.yaml` |
 | 🐳 **Docker-First** | One command to build, one command to run |
-| 🚂 **Railway Deployed** | Ready for one-click deployment on Railway |
+| ▲ **Vercel Deployed** | Ready for one-click deployment on Vercel |
 | 🔒 **Secure by Design** | API keys via `.env`, never hardcoded, `.gitignore`d by default |
 | ⚡ **Fast Inference** | Optimized prompt pipeline for snappy response times |
 | 🩺 **Health Check** | Built-in `/health` endpoint for monitoring and uptime checks |
@@ -79,7 +79,7 @@
 **DevOps**
 
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![Railway](https://img.shields.io/badge/Railway-0B0D0E?style=for-the-badge&logo=railway&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
 </div>
@@ -114,7 +114,7 @@ debugging_assistant/
 ├── .env.example                # 🔑 Environment variable template
 ├── requirements.txt            # 📦 Python dependencies
 ├── Dockerfile                  # 🐳 Container configuration
-├── railway.json                # 🚂 Railway deployment config
+├── vercel.json                 # ▲ Vercel deployment config
 ├── main.py                     # 🏁 Main entry point (starts uvicorn)
 └── README.md
 ```
@@ -191,27 +191,37 @@ docker run -p 8000:8000 --env-file .env debugging-assistant
 
 ---
 
-## 🚂 Railway Deployment
+## ▲ Vercel Deployment
 
-This project ships with a `railway.json` config for deployment on [Railway](https://railway.app).
+This project ships with a `vercel.json` config for seamless deployment on [Vercel](https://vercel.com).
 
 ### Steps
 
-1. **Push your repo to GitHub** (make sure `railway.json` and `Dockerfile` are at the root)
+1. **Push your repo to GitHub** (make sure `vercel.json` is at the root)
 
-2. **Go to [railway.app](https://railway.app)** → New Project → Deploy from GitHub repo
+2. **Go to [vercel.com](https://vercel.com)** → Add New → Project → Import your GitHub repo
 
-3. **Connect your GitHub repo** — Railway will auto-detect `railway.json`
+3. **Connect your GitHub repo** — Vercel will auto-detect `vercel.json`
 
-4. **Set the environment variable** in the Railway dashboard:
+4. **Set the environment variable** in the Vercel dashboard under **Settings → Environment Variables**:
 
    | Key | Value |
    |---|---|
    | `HF_API_KEY` | Your Hugging Face API token |
 
-5. **Deploy** — Railway builds the Docker image and gives you a live URL
+5. **Deploy** — Vercel builds and gives you a live URL (e.g. `your-project.vercel.app`)
 
-> ⚠️ **Note:** Make sure your `HF_API_KEY` environment variable is set in Railway's dashboard under **Variables**. The app will fail to start without it.
+> ⚠️ **Note:** Make sure your `HF_API_KEY` environment variable is set in Vercel's dashboard under **Environment Variables**. The app will fail to start without it.
+
+### CLI Deployment (Alternative)
+```bash
+# Install Vercel CLI
+npm install -g vercel
+
+# Login and deploy
+vercel login
+vercel --prod
+```
 
 ---
 
@@ -232,7 +242,7 @@ HF_API_KEY=your_huggingface_api_token_here
 |---|---|---|
 | `HF_API_KEY` | Hugging Face API token — get yours [here](https://huggingface.co/settings/tokens) | ✅ Yes |
 
-> ⚠️ **Never commit your `.env` file.** It's already in `.gitignore`. On Railway, set this in the dashboard under **Variables**.
+> ⚠️ **Never commit your `.env` file.** It's already in `.gitignore`. On Vercel, set this in the dashboard under **Settings → Environment Variables**.
 
 ---
 
@@ -303,7 +313,7 @@ python main.py
 <details>
 <summary><b>❌ HF_API_KEY not found / Authentication error</b></summary>
 
-- Double-check your `HF_API_KEY` in `.env` (local) or Railway dashboard (deployed)
+- Double-check your `HF_API_KEY` in `.env` (local) or Vercel dashboard under **Settings → Environment Variables** (deployed)
 - Ensure the key has **Inference** permissions enabled on [Hugging Face](https://huggingface.co/settings/tokens)
 - Test your key:
 ```bash
@@ -330,7 +340,7 @@ uvicorn.run(app, host="0.0.0.0", port=8001)  # use a different port
 - [x] FastAPI + static frontend
 - [x] Docker support
 - [x] Environment variable security
-- [x] Railway deployment config
+- [x] Vercel deployment config
 - [x] Health check endpoint
 - [ ] Multi-language support (Python, JS, Java, C++)
 - [ ] Chat history & session memory

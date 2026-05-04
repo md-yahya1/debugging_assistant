@@ -2,29 +2,22 @@
 """
 AI Debugging Assistant - Main Entry Point
 
-Run the debugging assistant with:
+Exposes the FastAPI `app` object so Vercel's Python runtime can detect it.
+Run locally with:
     python main.py
 """
 
-import subprocess
-import sys
 import os
+import sys
 
-def main():
-    """Start the FastAPI server for the debugging assistant"""
-    try:
-        print("[*] Starting AI Debugging Assistant...")
-        port = int(os.environ.get("PORT", 8000))
-        print(f"[*] Server will be available at: http://localhost:{port}")
+# Ensure project root is on the path (needed for relative imports when Vercel
+# invokes this file directly from the project root)
+sys.path.insert(0, os.path.dirname(__file__))
 
-        # Run the FastAPI app
-        from apps.debugging_assistant.app import app
-        import uvicorn
-
-        uvicorn.run(app, host="0.0.0.0", port=port)
-    except Exception as e:
-        print(f"[!] Error: {e}")
-        sys.exit(1)
+from apps.debugging_assistant.app import app  # noqa: F401  ← Vercel detects this
 
 if __name__ == "__main__":
-    main()
+    import uvicorn
+    port = int(os.environ.get("PORT", 8000))
+    print(f"[*] Starting AI Debugging Assistant on http://localhost:{port}")
+    uvicorn.run(app, host="0.0.0.0", port=port)
