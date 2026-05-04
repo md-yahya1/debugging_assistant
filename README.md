@@ -47,11 +47,13 @@
 
 ## 📸 Demo
 
-<!-- Add a GIF or screenshot of the app in action here -->
-```
-📌 Screenshot / GIF coming soon
-   → Run the app and grab a screen recording!
-```
+<div align="center">
+
+![AI Debug Assistant — Live on Vercel](./screenshot-1774778333555.png)
+
+*Live deployment on Vercel — paste your error, get an instant AI-powered fix.*
+
+</div>
 
 ---
 
